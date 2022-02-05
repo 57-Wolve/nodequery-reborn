@@ -234,7 +234,7 @@ ping_as=$(prep $(num "$(ping -c 2 -w 2 208.67.222.222 | grep rtt | cut -d'/' -f4
 
 # Build data for post
 data_post=$( jq -n \
-                  --arg vsersion "$(base "$version")" \
+                  --arg version "$(base "$version")" \
                   --arg uptime "$(base "$uptime")" \
                   --arg sessions "$(base "$sessions")" \
                   '{version: $version, uptime: $uptime, sessions: $sessions}' )
