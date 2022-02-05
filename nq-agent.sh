@@ -237,7 +237,38 @@ data_post=$( jq -n \
                   --arg version "$version" \
                   --arg uptime "$uptime" \
                   --arg sessions "$sessions" \
-                  '{version: $version, uptime: $uptime, sessions: $sessions}' )
+		  --arg processes "$processes" \
+		  --arg processes_array "$(base "$processes_array")" \
+		  --arg file_handles "$file_handles" \
+		  --arg file_handles_limit "$file_handles_limit" \
+		  --arg os_kernel "$os_kernel" \
+		  --arg os_name "$os_name" \
+		  --arg os_arch "$os_arch" \
+		  --arg cpu_name "$cpu_name" \
+		  --arg cpu_cores "$cpu_cores" \
+		  --arg cpu_freq "$cpu_freq" \
+		  --arg ram_total "$ram_total" \
+		  --arg ram_usage "$ram_usage" \
+		  --arg swap_total "$swap_total" \
+		  --arg swap_usage "$swap_usage" \
+		  --arg disk_array "$(base "$disk_array")" \
+		  --arg disk_total "$disk_total" \
+		  --arg disk_usage "$disk_usage" \
+		  --arg connections "$connections" \
+		  --arg nic "$nic" \
+		  --arg ipv4 "$ipv4" \
+		  --arg ipv6 "$ipv6" \
+		  --arg rx "$rx" \
+		  --arg tx "$tx" \
+		  --arg rx_gap "$rx_gap" \
+		  --arg tx_gap "$tx_gap" \
+		  --arg load "$load" \
+		  --arg load_cpu "$load_cpu" \
+		  --arg load_io "$load_io" \
+		  --arg ping_us "$ping_us" \
+		  --arg ping_eu "$ping_eu" \
+		  --arg ping_as "$ping_as" \
+                  '{version: $version, uptime: $uptime, sessions: $sessions, processes: $processes, processes_array: $processes_array, file_handles: $file_handles, file_handles_limit: $file_handles_limit, os_kernel: $os_kernel, os_name: $os_name, os_arch: $os_arch, cpu_name: $cpu_name, cpu_cores: $cpu_cores, cpu_freq: $cpu_freq, ram_total: $ram_total, ram_usage: $ram_usage, swap_total: $swap_total, swap_usage: $swap_usage, disk_array: $disk_array, disk_total: $disk_total, disk_usage: $disk_usage, connections: $connections, nic: $nic, ipv4: $ipv4, ipv6: $ipv6, rx: $rx, tx: $rx, rx_gap: $rx_gap, tx_gap: $tx_gap, load: $load, load_cpu: $load_cpu, load_io: $load_io, ping_us: $ping_us, ping_eu: $ping_eu, ping_as: $ping_as}' )
 
 #data_post="token=${auth[0]}&data=$(base "$version") $(base "$uptime") $(base "$sessions") $(base "$processes") $(base "$processes_array") $(base "$file_handles") $(base "$file_handles_limit") $(base "$os_kernel") $(base "$os_name") $(base "$os_arch") $(base "$cpu_name") $(base "$cpu_cores") $(base "$cpu_freq") $(base "$ram_total") $(base "$ram_usage") $(base "$swap_total") $(base "$swap_usage") $(base "$disk_array") $(base "$disk_total") $(base "$disk_usage") $(base "$connections") $(base "$nic") $(base "$ipv4") $(base "$ipv6") $(base "$rx") $(base "$tx") $(base "$rx_gap") $(base "$tx_gap") $(base "$load") $(base "$load_cpu") $(base "$load_io") $(base "$ping_eu") $(base "$ping_us") $(base "$ping_as")"
 
