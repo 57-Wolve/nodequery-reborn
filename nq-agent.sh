@@ -57,13 +57,15 @@ function num ()
 }
 
 # Agent version
-version=$(prep "$version")
+#version=$(prep "$version")
 
 # System uptime
-uptime=$(prep $(int "$(cat /proc/uptime | awk '{ print $1 }')"))
+#uptime=$(prep $(int "$(cat /proc/uptime | awk '{ print $1 }')"))
+uptime=$(int "$(cat /proc/uptime | awk '{ print $1 }')")
 
 # Login session count
-sessions=$(prep "$(who | wc -l)")
+#sessions=$(prep "$(who | wc -l)")
+sessions=$(who | wc -l)
 
 # Process count
 processes=$(prep "$(ps axc | wc -l)")
