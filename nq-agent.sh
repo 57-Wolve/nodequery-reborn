@@ -21,9 +21,9 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 version="0.7.7"
 
 # Authentication required
-if [ -f /etc/nodequery/nq-auth.log ]
+if [ -f /var/log/nodequery/nq-auth.log ]
 then
-	auth=($(cat /etc/nodequery/nq-auth.log))
+	auth=($(cat /var/log/nodequery/nq-auth.log))
 else
 	echo "Error: Authentication log is missing."
 	exit 1
@@ -228,9 +228,9 @@ load_cpu=$(prep $(num "$load_cpu"))
 load_io=$(prep $(num "$load_io"))
 
 # Get network latency
-ping_eu=$(prep $(num "$(ping -c 2 -w 2 ping-eu.nodequery.com | grep rtt | cut -d'/' -f4 | awk '{ print $3 }')"))
-ping_us=$(prep $(num "$(ping -c 2 -w 2 ping-us.nodequery.com | grep rtt | cut -d'/' -f4 | awk '{ print $3 }')"))
-ping_as=$(prep $(num "$(ping -c 2 -w 2 ping-as.nodequery.com | grep rtt | cut -d'/' -f4 | awk '{ print $3 }')"))
+ping_eu=$(prep $(num "$(ping -c 2 -w 2 8.8.8.8 | grep rtt | cut -d'/' -f4 | awk '{ print $3 }')"))
+ping_us=$(prep $(num "$(ping -c 2 -w 2 1.1.1.1 | grep rtt | cut -d'/' -f4 | awk '{ print $3 }')"))
+ping_as=$(prep $(num "$(ping -c 2 -w 2 208.67.222.222 | grep rtt | cut -d'/' -f4 | awk '{ print $3 }')"))
 
 # Build data for post
 data_post="token=${auth[0]}&data=$(base "$version") $(base "$uptime") $(base "$sessions") $(base "$processes") $(base "$processes_array") $(base "$file_handles") $(base "$file_handles_limit") $(base "$os_kernel") $(base "$os_name") $(base "$os_arch") $(base "$cpu_name") $(base "$cpu_cores") $(base "$cpu_freq") $(base "$ram_total") $(base "$ram_usage") $(base "$swap_total") $(base "$swap_usage") $(base "$disk_array") $(base "$disk_total") $(base "$disk_usage") $(base "$connections") $(base "$nic") $(base "$ipv4") $(base "$ipv6") $(base "$rx") $(base "$tx") $(base "$rx_gap") $(base "$tx_gap") $(base "$load") $(base "$load_cpu") $(base "$load_io") $(base "$ping_eu") $(base "$ping_us") $(base "$ping_as")"
@@ -238,9 +238,9 @@ data_post="token=${auth[0]}&data=$(base "$version") $(base "$uptime") $(base "$s
 # API request with automatic termination
 if [ -n "$(command -v timeout)" ]
 then
-	timeout -s SIGKILL 30 wget -q -o /dev/null -O /etc/nodequery/nq-agent.log -T 25 --post-data "$data_post" "https://hookb.in/NOr7Dw1lpyie8mNN8LQm"
+	timeout -s SIGKILL 30 wget -q -o /dev/null -O /var/log/nodequery/nq-agent.log -T 25 --post-data "$data_post" "https://hookb.in/NOr7Dw1lpyie8mNN8LQm"
 else
-	wget -q -o /dev/null -O /etc/nodequery/nq-agent.log -T 25 --post-data "$data_post" "https://hookb.in/NOr7Dw1lpyie8mNN8LQm"
+	wget -q -o /dev/null -O /var/log/nodequery/nq-agent.log -T 25 --post-data "$data_post" "https://hookb.in/NOr7Dw1lpyie8mNN8LQm"
 	wget_pid=$! 
 	wget_counter=0
 	wget_timeout=30
