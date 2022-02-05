@@ -238,7 +238,7 @@ data_post=$( jq -n \
                   --arg uptime "$uptime" \
                   --arg sessions "$sessions" \
 		  --arg processes "$processes" \
-		  --arg processes_array "$(base "$processes_array")" \
+		  --arg processes_array "$processes_array" \
 		  --arg file_handles "$file_handles" \
 		  --arg file_handles_limit "$file_handles_limit" \
 		  --arg os_kernel "$os_kernel" \
@@ -251,7 +251,7 @@ data_post=$( jq -n \
 		  --arg ram_usage "$ram_usage" \
 		  --arg swap_total "$swap_total" \
 		  --arg swap_usage "$swap_usage" \
-		  --arg disk_array "$(base "$disk_array")" \
+		  --arg disk_array "$disk_array" \
 		  --arg disk_total "$disk_total" \
 		  --arg disk_usage "$disk_usage" \
 		  --arg connections "$connections" \
