@@ -219,7 +219,7 @@ then
 fi
 
 # System load cache
-echo "$time $cpu $io $idle $rx $tx" > /etc/nodequery/nq-data.log
+echo "$time $cpu $io $idle $rx $tx" > /var/log/nodequery/nq-data.log
 
 # Prepare load variables
 rx_gap=$(prep $(num "$rx_gap"))
