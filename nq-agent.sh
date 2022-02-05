@@ -191,7 +191,7 @@ idle=${stat[3]}
 
 if [ -e /var/log/nodequery/nq-data.log ]
 then
-	data=($(cat /etc/nodequery/nq-data.log))
+	data=($(cat /var/log/nodequery/nq-data.log))
 	interval=$(($time-${data[0]}))
 	cpu_gap=$(($cpu-${data[1]}))
 	io_gap=$(($io-${data[2]}))
