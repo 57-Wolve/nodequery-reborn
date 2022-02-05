@@ -189,7 +189,7 @@ cpu=$((${stat[0]}+${stat[1]}+${stat[2]}+${stat[3]}))
 io=$((${stat[3]}+${stat[4]}))
 idle=${stat[3]}
 
-if [ -e /etc/nodequery/nq-data.log ]
+if [ -e /var/log/nodequery/nq-data.log ]
 then
 	data=($(cat /etc/nodequery/nq-data.log))
 	interval=$(($time-${data[0]}))
