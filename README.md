@@ -20,6 +20,7 @@ Most major distributions will already include following requirements.
 * crontab
 * wget
 * ip
+* jq
 
 Tested Distributions (x64)
 --------------------------
