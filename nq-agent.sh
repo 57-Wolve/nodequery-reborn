@@ -228,9 +228,9 @@ load_cpu=$(prep $(num "$load_cpu"))
 load_io=$(prep $(num "$load_io"))
 
 # Get network latency
-ping_eu=$(prep $(num "$(ping -c 2 -w 2 8.8.8.8 | grep rtt | cut -d'/' -f4 | awk '{ print $3 }')"))
-ping_us=$(prep $(num "$(ping -c 2 -w 2 1.1.1.1 | grep rtt | cut -d'/' -f4 | awk '{ print $3 }')"))
-ping_as=$(prep $(num "$(ping -c 2 -w 2 208.67.222.222 | grep rtt | cut -d'/' -f4 | awk '{ print $3 }')"))
+ping_eu=$(prep $(num "$(ping -c 2 -w 2 ping-us.hydradyne.io | grep rtt | cut -d'/' -f4 | awk '{ print $3 }')"))
+ping_us=$(prep $(num "$(ping -c 2 -w 2 ping-eu.hydradyne.io | grep rtt | cut -d'/' -f4 | awk '{ print $3 }')"))
+ping_as=$(prep $(num "$(ping -c 2 -w 2 ping-as.hydradyne.io | grep rtt | cut -d'/' -f4 | awk '{ print $3 }')"))
 
 # Build data for post
 data_post=$( jq -n \
