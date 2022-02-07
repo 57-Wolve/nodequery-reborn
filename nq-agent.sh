@@ -275,9 +275,9 @@ data_post=$( jq -n \
 # API request with automatic termination
 if [ -n "$(command -v timeout)" ]
 then
-	timeout -s SIGKILL 30 wget -q -o /dev/null -O /var/log/nodequery/nq-agent.log -T 25 --post-data "$data_post" "https://api.hydradyne.io/v1/telemetry/nodequery/data"
+	timeout -s SIGKILL 30 wget -q -o /dev/null -O /var/log/nodequery/nq-agent.log -T 25 --header="Authorization: Token ${auth[0]}" --post-data "$data_post" "https://api.hydradyne.io/v1/telemetry/nodequery/data"
 else
-	wget -q -o /dev/null -O /var/log/nodequery/nq-agent.log -T 25 --post-data "$data_post" "https://api.hydradyne.io/v1/telemetry/nodequery/data"
+	wget -q -o /dev/null -O /var/log/nodequery/nq-agent.log -T 25 --header="Authorization: Token ${auth[0]}" --post-data "$data_post" "https://api.hydradyne.io/v1/telemetry/nodequery/data"
 	wget_pid=$! 
 	wget_counter=0
 	wget_timeout=30
